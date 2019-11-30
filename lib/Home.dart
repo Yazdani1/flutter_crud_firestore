@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
   @override
@@ -12,7 +13,7 @@ class _HomeState extends State<Home> {
 
       appBar: AppBar(
         title: Text("Firestore CRUD Application"),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.amber,
       ),
 
     );
