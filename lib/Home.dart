@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'FirestoreService.dart';
 import 'Note.dart';
+import 'NoteDetails.dart';
 
 
 class Home extends StatefulWidget {
@@ -11,10 +12,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
 
-  Future<Null>getRefresh()async{
-
+  Future<Null> getRefresh() async {
     await Future.delayed(Duration(seconds: 3));
-    
   }
 
   @override
@@ -39,7 +38,7 @@ class _HomeState extends State<Home> {
                 child: ListView.builder(
                     itemCount: snapshot.data.length,
                     itemBuilder: (context, index) {
-                      Note note=snapshot.data[index];
+                      Note note = snapshot.data[index];
 
                       return Card(
                         elevation: 10.0,
@@ -50,25 +49,32 @@ class _HomeState extends State<Home> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
 
-                              Container(
-                                child: Text(note.title,
-                                maxLines: 1,
-                                style: TextStyle(
-                                  fontSize: 20.0,
-                                  color: Colors.black,
-                                  fontWeight: FontWeight.bold
-                                ),
+                              InkWell(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                      new MaterialPageRoute(
+                                          builder: (_) => NoteDetails(note: note,)));
+                                },
+                                child: Container(
+                                  child: Text(note.title,
+                                    maxLines: 1,
+                                    style: TextStyle(
+                                        fontSize: 20.0,
+                                        color: Colors.black,
+                                        fontWeight: FontWeight.bold
+                                    ),
+                                  ),
                                 ),
                               ),
                               SizedBox(height: 5.0,),
                               Container(
                                 child: Text(note.description,
-                                maxLines: 3,
-                                style: TextStyle(
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 17.0,
-                                  color: Colors.black
-                                ),
+                                  maxLines: 3,
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 17.0,
+                                      color: Colors.black
+                                  ),
                                 ),
                               )
 
