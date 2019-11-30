@@ -107,19 +107,39 @@ class _HomeState extends State<Home> {
                               SizedBox(width: 10.0,),
                               Expanded(
                                 flex: 1,
-                                child: InkWell(
-                                  onTap: () async {
-                                    try {
-                                      await FirestoreService().deleteNote(
-                                          note.id);
-                                    } catch (e) {
-                                      print(e);
-                                    }
-                                  },
-                                  child: Icon(Icons.delete,
-                                    color: Colors.deepOrange,
-                                    size: 30.0,
-                                  ),
+                                child: Row(
+                                  children: <Widget>[
+                                    InkWell(
+                                      onTap: () async {
+                                        try {
+                                          await FirestoreService().deleteNote(
+                                              note.id);
+                                        } catch (e) {
+                                          print(e);
+                                        }
+                                      },
+                                      child: Icon(Icons.delete,
+                                        color: Colors.deepOrange,
+                                        size: 30.0,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5.0,),
+                                    InkWell(
+                                      onTap: () async {
+                                        try {
+                                          await FirestoreService().deleteNote(
+                                              note.id);
+                                        } catch (e) {
+                                          print(e);
+                                        }
+                                      },
+                                      child: Icon(Icons.edit,
+                                        color: Colors.deepOrange,
+                                        size: 30.0,
+                                      ),
+                                    ),
+
+                                  ],
                                 ),
                               )
 
