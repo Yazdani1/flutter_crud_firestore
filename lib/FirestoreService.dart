@@ -15,7 +15,7 @@ class FirestoreService {
   }
 
   Stream<List<Note>> getNotes() {
-    return _db.collection("note").snapshots().map((snapshot) =>
+    return _db.collection("note").orderBy("title", descending: true).snapshots().map((snapshot) =>
         snapshot.documents.map((doc) =>
             Note.fromMap(doc.data, doc.documentID)).toList(),
     );
@@ -31,6 +31,12 @@ class FirestoreService {
 
   Future<void> deleteNote(String id){
     return _db.collection("note").document(id).delete();
+  }
+
+  //update data
+
+  Future<void>updateNote(Note note){
+    return _db.collection("note").document(note.id).updateData(note.toMap());
   }
 
 

@@ -23,7 +23,7 @@ class _HomeState extends State<Home> {
 
       appBar: AppBar(
         title: Text("Firestore CRUD Application"),
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.green,
       ),
 
       body: StreamBuilder(
@@ -43,39 +43,82 @@ class _HomeState extends State<Home> {
 
                       return Card(
                         elevation: 10.0,
+                        margin: EdgeInsets.all(10.0),
                         child: Container(
                           height: 100.0,
                           margin: EdgeInsets.all(10.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
+                          child: Row(
                             children: <Widget>[
 
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).push(
-                                      new MaterialPageRoute(
-                                          builder: (_) =>
-                                              NoteDetails(note: note,)));
-                                },
-                                child: Container(
-                                  child: Text(note.title,
-                                    maxLines: 1,
-                                    style: TextStyle(
-                                        fontSize: 20.0,
-                                        color: Colors.black,
-                                        fontWeight: FontWeight.bold
+                              Expanded(
+                                flex: 4,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: <Widget>[
+                                    Container(
+
+                                      child: Row(
+                                        children: <Widget>[
+
+                                          CircleAvatar(
+                                            child: Text(note.title[0]),
+                                            backgroundColor: Colors.green,
+                                            foregroundColor: Colors.white,
+                                          ),
+
+                                          SizedBox(width: 6.0,),
+                                          InkWell(
+                                            onTap: () {
+                                              Navigator.of(context).push(
+                                                  new MaterialPageRoute(
+                                                      builder: (_) =>
+                                                          NoteDetails(note: note,)));
+                                            },
+                                            child: Container(
+                                              child: Text(note.title,
+                                                maxLines: 1,
+                                                style: TextStyle(
+                                                    fontSize: 20.0,
+                                                    color: Colors.black,
+                                                    fontWeight: FontWeight.bold
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+
+                                        ],
+                                      ),
                                     ),
-                                  ),
+                                    SizedBox(height: 5.0,),
+                                    Container(
+                                      child: Text(note.description,
+                                        maxLines: 2,
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 17.0,
+                                            color: Colors.black
+                                        ),
+                                      ),
+                                    ),
+
+                                  ],
                                 ),
                               ),
-                              SizedBox(height: 5.0,),
-                              Container(
-                                child: Text(note.description,
-                                  maxLines: 3,
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 17.0,
-                                      color: Colors.black
+                              SizedBox(width: 10.0,),
+                              Expanded(
+                                flex: 1,
+                                child: InkWell(
+                                  onTap: () async {
+                                    try {
+                                      await FirestoreService().deleteNote(
+                                          note.id);
+                                    } catch (e) {
+                                      print(e);
+                                    }
+                                  },
+                                  child: Icon(Icons.delete,
+                                    color: Colors.deepOrange,
+                                    size: 30.0,
                                   ),
                                 ),
                               )
@@ -93,7 +136,7 @@ class _HomeState extends State<Home> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add,),
         elevation: 20.0,
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.green,
         onPressed: () {
           Navigator.of(context).push(
               new MaterialPageRoute(builder: (_) => AddNotes()));
