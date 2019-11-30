@@ -29,38 +29,42 @@ class _NoteDetailsState extends State<NoteDetails> {
 
       body: SingleChildScrollView(
 
-        child: Card(
-          margin: EdgeInsets.all(10.0),
-          elevation: 15.0,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0)
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: <Widget>[
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          child: Card(
+            margin: EdgeInsets.all(10.0),
+            elevation: 15.0,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15.0)
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
 
-                Container(
-                  child: Text(widget.note.title,
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    color: Colors.black
-                  ),
-                  ),
-                ),
-                SizedBox(height: 5.0,),
-
-                Container(
-                  child: Text(widget.note.description,
+                  Container(
+                    child: Text(widget.note.title,
                     style: TextStyle(
-                        fontSize: 20.0,
-                        color: Colors.black
+                      fontSize: 20.0,
+                      color: Colors.black
+                    ),
                     ),
                   ),
-                ),
+                  SizedBox(height: 5.0,),
+
+                  Container(
+                    child: Text(widget.note.description,
+                      style: TextStyle(
+                          fontSize: 20.0,
+                          color: Colors.black
+                      ),
+                    ),
+                  ),
 
 
-              ],
+                ],
+              ),
             ),
           ),
         ),

@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'FirestoreService.dart';
 import 'Note.dart';
 import 'NoteDetails.dart';
+import 'AddData.dart';
 
 
 class Home extends StatefulWidget {
@@ -43,7 +44,7 @@ class _HomeState extends State<Home> {
                       return Card(
                         elevation: 10.0,
                         child: Container(
-                          height: 120.0,
+                          height: 100.0,
                           margin: EdgeInsets.all(10.0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -53,7 +54,8 @@ class _HomeState extends State<Home> {
                                 onTap: () {
                                   Navigator.of(context).push(
                                       new MaterialPageRoute(
-                                          builder: (_) => NoteDetails(note: note,)));
+                                          builder: (_) =>
+                                              NoteDetails(note: note,)));
                                 },
                                 child: Container(
                                   child: Text(note.title,
@@ -88,8 +90,15 @@ class _HomeState extends State<Home> {
             }
           }
       ),
-
-
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add,),
+        elevation: 20.0,
+        backgroundColor: Colors.amber,
+        onPressed: () {
+          Navigator.of(context).push(
+              new MaterialPageRoute(builder: (_) => AddNotes()));
+        },
+      ),
     );
   }
 }
