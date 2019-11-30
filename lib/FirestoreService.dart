@@ -27,6 +27,12 @@ class FirestoreService {
     return _db.collection("note").add(note.toMap());
   }
 
+  //delete note
+
+  Future<void> deleteNote(String id){
+    return _db.collection("note").document(id).delete();
+  }
+
 
 
 }

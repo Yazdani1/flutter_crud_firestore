@@ -14,6 +14,7 @@ class _AddNotesState extends State<AddNotes> {
 
   TextEditingController _titlecontroller;
   TextEditingController _descriptioncontroller;
+  FocusNode _descriptionNote;
 
 
   @override
@@ -21,6 +22,7 @@ class _AddNotesState extends State<AddNotes> {
     super.initState();
     _titlecontroller = TextEditingController(text: '');
     _descriptioncontroller = TextEditingController(text: '');
+    _descriptionNote = FocusNode();
   }
 
 
@@ -42,6 +44,10 @@ class _AddNotesState extends State<AddNotes> {
               children: <Widget>[
 
                 TextFormField(
+                  textInputAction: TextInputAction.next,
+                  onEditingComplete: (){
+                    FocusScope.of(context).requestFocus(_descriptionNote);
+                  },
                   controller: _titlecontroller,
                   validator: (value){
                     if(value==null || value.isEmpty){
@@ -56,6 +62,7 @@ class _AddNotesState extends State<AddNotes> {
                 SizedBox(height: 10.0,),
 
                 TextFormField(
+                  focusNode: _descriptionNote,
                   controller: _descriptioncontroller,
                   maxLines: 5,
                   validator: (value){
