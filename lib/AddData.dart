@@ -43,6 +43,11 @@ class _AddNotesState extends State<AddNotes> {
 
                 TextFormField(
                   controller: _titlecontroller,
+                  validator: (value){
+                    if(value==null || value.isEmpty){
+                      return "Title can not be empty";
+                    }
+                  },
                   decoration: InputDecoration(
                       labelText: "Title",
                       border: OutlineInputBorder()
@@ -53,6 +58,11 @@ class _AddNotesState extends State<AddNotes> {
                 TextFormField(
                   controller: _descriptioncontroller,
                   maxLines: 5,
+                  validator: (value){
+                    if(value==null || value.isEmpty){
+                      return "Description can not be empty";
+                    }
+                  },
                   decoration: InputDecoration(
                     labelText: "Description",
                     border: OutlineInputBorder(),
@@ -77,16 +87,19 @@ class _AddNotesState extends State<AddNotes> {
                     color: Colors.amber,
                     padding: EdgeInsets.all(10.0),
                     onPressed: () async {
-                      try {
-                        await FirestoreService().addNote(
-                            Note(title: _titlecontroller.text,
-                                description: _descriptioncontroller.text
-                            )
-                        );
-                        Navigator.of(context).push(
-                            new MaterialPageRoute(builder: (_) =>Home()));
-                      } catch (e) {
-                        print(e);
+                      if(_key.currentState.validate()){
+                        try {
+                          await FirestoreService().addNote(
+                              Note(title: _titlecontroller.text,
+                                  description: _descriptioncontroller.text
+                              )
+                          );
+                          Navigator.of(context).pop();
+                          Navigator.of(context).push(
+                              new MaterialPageRoute(builder: (_) =>Home()));
+                        } catch (e) {
+                          print(e);
+                        }
                       }
                     },
                     shape: StadiumBorder(),
