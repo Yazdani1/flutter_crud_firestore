@@ -57,7 +57,7 @@ class _HomeState extends State<Home> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: <Widget>[
                                     Container(
-
+                                      width: MediaQuery.of(context).size.width/1.5,
                                       child: Row(
                                         children: <Widget>[
 
@@ -77,6 +77,7 @@ class _HomeState extends State<Home> {
                                                             note: note,)));
                                             },
                                             child: Container(
+                                              width: MediaQuery.of(context).size.width/2,
                                               child: Text(note.title,
                                                 maxLines: 1,
                                                 style: TextStyle(

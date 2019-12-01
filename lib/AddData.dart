@@ -26,21 +26,22 @@ class _AddNotesState extends State<AddNotes> {
   void initState() {
     super.initState();
     _titlecontroller = TextEditingController(
-        text: widget.note.title != null ? widget.note.title : '');
+        text: isEdating ? widget.note.title : '');
     _descriptioncontroller =
-        TextEditingController(text: widget.note.description != null
+        TextEditingController(text: isEdating
             ? widget.note.description
             : '');
     _descriptionNote = FocusNode();
   }
 
+  get isEdating => widget.note != null;
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
 
       appBar: AppBar(
-        title: Text("Add you noe"),
+        title: Text(isEdating ? "Update Note" : "Add your note"),
         backgroundColor: Colors.purple,
       ),
 
@@ -94,7 +95,7 @@ class _AddNotesState extends State<AddNotes> {
                       .size
                       .width / 1,
                   child: RaisedButton(
-                    child: Text("SAVE",
+                    child: Text(isEdating ? "Update" : "SAVE",
                       style: TextStyle(
                           fontSize: 17.0,
                           color: Colors.white
@@ -104,12 +105,21 @@ class _AddNotesState extends State<AddNotes> {
                     padding: EdgeInsets.all(10.0),
                     onPressed: () async {
                       if (_key.currentState.validate()) {
+
                         try {
-                          await FirestoreService().addNote(
-                              Note(title: _titlecontroller.text,
-                                  description: _descriptioncontroller.text
-                              )
-                          );
+                          if (isEdating) {
+                            Note note = Note(title: _titlecontroller.text,
+                                description: _descriptioncontroller.text,
+                              id: widget.note.id
+                            );
+                            await FirestoreService().updateNote(note);
+                          } else {
+                            Note note = Note(title: _titlecontroller.text,
+                                description: _descriptioncontroller.text
+                            );
+                            await FirestoreService().addNote(note);
+                          }
+
                           Navigator.of(context).pop();
                           Navigator.of(context).push(
                               new MaterialPageRoute(builder: (_) => Home()));
