@@ -53,7 +53,6 @@ class _AddNotesState extends State<AddNotes> {
         title: Text(isEdating ? "Update Note" : "Add your note"),
         backgroundColor: Colors.purple,
       ),
-
       body: Container(
         margin: EdgeInsets.all(20.0),
         child: SingleChildScrollView(
@@ -126,7 +125,6 @@ class _AddNotesState extends State<AddNotes> {
                             );
                             await FirestoreService().addNote(note);
                           }
-
                           Navigator.of(context).pop();
                           Navigator.of(context).push(
                               new MaterialPageRoute(builder: (_) => Home()));
@@ -138,8 +136,6 @@ class _AddNotesState extends State<AddNotes> {
                     shape: StadiumBorder(),
                   ),
                 )
-
-
               ],
             ),
           ),
