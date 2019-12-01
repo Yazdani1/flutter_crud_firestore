@@ -61,7 +61,6 @@ class _AddNotesState extends State<AddNotes> {
             key: _key,
             child: Column(
               children: <Widget>[
-
                 TextFormField(
                   textInputAction: TextInputAction.next,
                   onEditingComplete: () {
@@ -79,7 +78,6 @@ class _AddNotesState extends State<AddNotes> {
                   ),
                 ),
                 SizedBox(height: 10.0,),
-
                 TextFormField(
                   focusNode: _descriptionNote,
                   controller: _descriptioncontroller,
@@ -95,7 +93,6 @@ class _AddNotesState extends State<AddNotes> {
                   ),
                 ),
                 SizedBox(height: 30.0,),
-
                 ButtonTheme(
                   height: 50.0,
                   splashColor: Colors.green,
