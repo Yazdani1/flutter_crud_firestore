@@ -17,18 +17,14 @@ class NoteDetails extends StatefulWidget {
 
 class _NoteDetailsState extends State<NoteDetails> {
 
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
-
       appBar: AppBar(
         title: Text("Note Details"),
         backgroundColor: Colors.green,
       ),
-
       body: SingleChildScrollView(
-
         child: Container(
           width: MediaQuery.of(context).size.width,
           child: Card(
@@ -42,7 +38,6 @@ class _NoteDetailsState extends State<NoteDetails> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
-
                   Container(
                     child: Text(widget.note.title,
                     style: TextStyle(
@@ -52,7 +47,6 @@ class _NoteDetailsState extends State<NoteDetails> {
                     ),
                   ),
                   SizedBox(height: 5.0,),
-
                   Container(
                     child: Text(widget.note.description,
                       style: TextStyle(
@@ -61,8 +55,6 @@ class _NoteDetailsState extends State<NoteDetails> {
                       ),
                     ),
                   ),
-
-
                 ],
               ),
             ),
