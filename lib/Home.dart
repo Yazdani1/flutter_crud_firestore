@@ -7,6 +7,7 @@ import 'AddData.dart';
 import 'AddData.dart';
 
 
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => new _HomeState();
@@ -17,6 +18,11 @@ class _HomeState extends State<Home> {
   Future<Null> getRefresh() async {
     await Future.delayed(Duration(seconds: 3));
   }
+
+  final fifteenAgo = new DateTime.now().subtract(new Duration(minutes: 15));
+
+  // Add a new locale messages
+
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +52,7 @@ class _HomeState extends State<Home> {
                         elevation: 10.0,
                         margin: EdgeInsets.all(10.0),
                         child: Container(
-                          height: 100.0,
+                          height: 120.0,
                           margin: EdgeInsets.all(10.0),
                           child: Row(
                             children: <Widget>[
@@ -93,6 +99,16 @@ class _HomeState extends State<Home> {
                                       ),
                                     ),
                                     SizedBox(height: 5.0,),
+                                    Container(
+                                      child: Text(note.date,
+                                      style: TextStyle(
+                                        color: Colors.deepOrange,
+                                        fontWeight: FontWeight.bold
+                                      ),
+                                      ),
+                                    ),
+                                    SizedBox(height: 6.0,),
+                                    
                                     Container(
                                       child: Text(note.description,
                                         maxLines: 2,

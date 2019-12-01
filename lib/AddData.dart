@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'FirestoreService.dart';
 import 'Note.dart';
 import 'Home.dart';
+import 'package:intl/intl.dart';
+
 
 class AddNotes extends StatefulWidget {
 
@@ -21,6 +23,9 @@ class _AddNotesState extends State<AddNotes> {
   TextEditingController _descriptioncontroller;
   FocusNode _descriptionNote;
 
+  final DateTime _currenttime=new DateTime.now();
+
+
 
   @override
   void initState() {
@@ -36,8 +41,12 @@ class _AddNotesState extends State<AddNotes> {
 
   get isEdating => widget.note != null;
 
+
   @override
   Widget build(BuildContext context) {
+
+    String formateDate= new DateFormat.yMMMd().format(_currenttime);
+
     return new Scaffold(
 
       appBar: AppBar(
@@ -105,17 +114,18 @@ class _AddNotesState extends State<AddNotes> {
                     padding: EdgeInsets.all(10.0),
                     onPressed: () async {
                       if (_key.currentState.validate()) {
-
                         try {
                           if (isEdating) {
                             Note note = Note(title: _titlecontroller.text,
                                 description: _descriptioncontroller.text,
-                              id: widget.note.id
+                                id: widget.note.id,
+                                date: formateDate
                             );
                             await FirestoreService().updateNote(note);
                           } else {
                             Note note = Note(title: _titlecontroller.text,
-                                description: _descriptioncontroller.text
+                                description: _descriptioncontroller.text,
+                                date: formateDate
                             );
                             await FirestoreService().addNote(note);
                           }
