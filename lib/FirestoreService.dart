@@ -39,6 +39,4 @@ class FirestoreService {
     return _db.collection("note").document(note.id).updateData(note.toMap());
   }
 
-
-
 }

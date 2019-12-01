@@ -4,6 +4,11 @@ import 'Note.dart';
 import 'Home.dart';
 
 class AddNotes extends StatefulWidget {
+
+  final Note note;
+
+  const AddNotes({Key key, this.note}) : super(key: key);
+
   @override
   _AddNotesState createState() => new _AddNotesState();
 }
@@ -20,8 +25,12 @@ class _AddNotesState extends State<AddNotes> {
   @override
   void initState() {
     super.initState();
-    _titlecontroller = TextEditingController(text: '');
-    _descriptioncontroller = TextEditingController(text: '');
+    _titlecontroller = TextEditingController(
+        text: widget.note.title != null ? widget.note.title : '');
+    _descriptioncontroller =
+        TextEditingController(text: widget.note.description != null
+            ? widget.note.description
+            : '');
     _descriptionNote = FocusNode();
   }
 
@@ -45,12 +54,12 @@ class _AddNotesState extends State<AddNotes> {
 
                 TextFormField(
                   textInputAction: TextInputAction.next,
-                  onEditingComplete: (){
+                  onEditingComplete: () {
                     FocusScope.of(context).requestFocus(_descriptionNote);
                   },
                   controller: _titlecontroller,
-                  validator: (value){
-                    if(value==null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Title can not be empty";
                     }
                   },
@@ -65,8 +74,8 @@ class _AddNotesState extends State<AddNotes> {
                   focusNode: _descriptionNote,
                   controller: _descriptioncontroller,
                   maxLines: 5,
-                  validator: (value){
-                    if(value==null || value.isEmpty){
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
                       return "Description can not be empty";
                     }
                   },
@@ -94,7 +103,7 @@ class _AddNotesState extends State<AddNotes> {
                     color: Colors.amber,
                     padding: EdgeInsets.all(10.0),
                     onPressed: () async {
-                      if(_key.currentState.validate()){
+                      if (_key.currentState.validate()) {
                         try {
                           await FirestoreService().addNote(
                               Note(title: _titlecontroller.text,
@@ -103,7 +112,7 @@ class _AddNotesState extends State<AddNotes> {
                           );
                           Navigator.of(context).pop();
                           Navigator.of(context).push(
-                              new MaterialPageRoute(builder: (_) =>Home()));
+                              new MaterialPageRoute(builder: (_) => Home()));
                         } catch (e) {
                           print(e);
                         }

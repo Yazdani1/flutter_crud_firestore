@@ -4,6 +4,7 @@ import 'FirestoreService.dart';
 import 'Note.dart';
 import 'NoteDetails.dart';
 import 'AddData.dart';
+import 'AddData.dart';
 
 
 class Home extends StatefulWidget {
@@ -72,7 +73,8 @@ class _HomeState extends State<Home> {
                                               Navigator.of(context).push(
                                                   new MaterialPageRoute(
                                                       builder: (_) =>
-                                                          NoteDetails(note: note,)));
+                                                          NoteDetails(
+                                                            note: note,)));
                                             },
                                             child: Container(
                                               child: Text(note.title,
@@ -126,12 +128,9 @@ class _HomeState extends State<Home> {
                                     SizedBox(width: 5.0,),
                                     InkWell(
                                       onTap: () async {
-                                        try {
-                                          await FirestoreService().deleteNote(
-                                              note.id);
-                                        } catch (e) {
-                                          print(e);
-                                        }
+                                        Navigator.of(context).push(
+                                            new MaterialPageRoute(
+                                                builder: (_) => AddNotes(note: note,)));
                                       },
                                       child: Icon(Icons.edit,
                                         color: Colors.deepOrange,
