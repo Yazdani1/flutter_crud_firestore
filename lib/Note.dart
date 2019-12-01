@@ -5,12 +5,10 @@ class Note {
   final String id;
   final String date;
 
-
   Note({this.title, this.description, this.id, this.date});
 
   Note.fromMap(Map<String, dynamic>data, String id)
       :
-
         title=data["title"],
         description=data["description"],
         id=id,
@@ -23,6 +21,4 @@ class Note {
       "date":date
     };
   }
-
-
 }
