@@ -87,7 +87,7 @@ class _HomeState extends State<Home> {
                                               child: Text(note.title,
                                                 maxLines: 1,
                                                 style: TextStyle(
-                                                    fontSize: 20.0,
+                                                    fontSize: 21.0,
                                                     color: Colors.black,
                                                     fontWeight: FontWeight.bold
                                                 ),
@@ -98,7 +98,9 @@ class _HomeState extends State<Home> {
                                         ],
                                       ),
                                     ),
-                                    SizedBox(height: 5.0,),
+
+                                    SizedBox(height: 6.0,),
+
                                     Container(
                                       child: Text(note.date,
                                       style: TextStyle(

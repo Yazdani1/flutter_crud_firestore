@@ -14,7 +14,7 @@ class Note {
         id=id,
         date=data["date"];
   Map<String, dynamic> toMap() {
-    
+
     return {
       "title": title,
       "description": description,
