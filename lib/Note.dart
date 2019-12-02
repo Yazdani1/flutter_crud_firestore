@@ -13,7 +13,6 @@ class Note {
         description=data["description"],
         id=id,
         date=data["date"];
-
   Map<String, dynamic> toMap() {
     return {
       "title": title,
@@ -21,4 +20,6 @@ class Note {
       "date":date
     };
   }
+
+
 }

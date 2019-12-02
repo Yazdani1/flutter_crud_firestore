@@ -8,7 +8,7 @@ class FirestoreService {
 
   FirestoreService._internal();
   Firestore _db = Firestore.instance;
-  
+
   factory FirestoreService(){
     return _firestoreService;
   }
