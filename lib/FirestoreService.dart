@@ -3,14 +3,12 @@ import 'Note.dart';
 
 
 class FirestoreService {
-
   static final FirestoreService _firestoreService = FirestoreService
       ._internal();
 
   FirestoreService._internal();
-
   Firestore _db = Firestore.instance;
-
+  
   factory FirestoreService(){
     return _firestoreService;
   }
@@ -21,7 +19,6 @@ class FirestoreService {
     );
   }
   //add note
-
   Future<void> addNote(Note note){
     return _db.collection("note").add(note.toMap());
   }
