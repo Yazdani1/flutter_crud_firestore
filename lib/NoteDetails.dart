@@ -62,7 +62,6 @@ class _NoteDetailsState extends State<NoteDetails> {
         ),
 
       ),
-
     );
   }
 }
