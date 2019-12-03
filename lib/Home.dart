@@ -98,9 +98,7 @@ class _HomeState extends State<Home> {
                                         ],
                                       ),
                                     ),
-
                                     SizedBox(height: 6.0,),
-
                                     Container(
                                       child: Text(note.date,
                                       style: TextStyle(
